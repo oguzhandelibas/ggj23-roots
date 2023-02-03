@@ -6,6 +6,5 @@ public class FlyingEnemyController : EnemyController
     {
         moveDirection = Vector3.zero - transform.position;
         moveDirection.Normalize();
-        Debug.Log(moveDirection);
     }
 }
