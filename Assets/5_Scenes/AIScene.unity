@@ -290,9 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048e9a1e007e7724d912d70ac84d6916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 11400000, guid: 58fdafab1a3be0446a1485a73b9f7c9e, type: 2}
-  enemyPower: 10
-  speed: 4
+  EnemyData: {fileID: 11400000, guid: 2b2da7e7f5a2a004bb08b446b1ee46dd, type: 2}
 --- !u!1 &1073543688
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,9 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808c363a4162a3468a9c45a95270815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 11400000, guid: 58fdafab1a3be0446a1485a73b9f7c9e, type: 2}
-  enemyPower: 10
-  speed: 3
+  EnemyData: {fileID: 11400000, guid: 4d8f039221cb7664fb5b9573f2b4529d, type: 2}
 --- !u!1 &1520716043
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +840,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ccb9b33fc58024b8a53a64f99791fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 0}
-  enemyPower: 10
-  speed: 2
+  EnemyData: {fileID: 11400000, guid: 15e1b22ae4ade7e49ad8e474a95e342b, type: 2}

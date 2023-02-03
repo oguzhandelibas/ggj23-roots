@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] protected Health enemyHealth;
-    [SerializeField] protected int enemyPower;
-    [SerializeField] protected float speed;
+    [SerializeField] protected EnemyData EnemyData;
 
     protected Vector3 moveDirection;
 
@@ -16,6 +14,6 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        transform.Translate(Time.deltaTime * speed * moveDirection);
+        transform.Translate(Time.deltaTime * EnemyData.Speed * moveDirection);
     }
 }
