@@ -8,6 +8,7 @@ namespace Rot.Control
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Health playerHealth;
+        [SerializeField] private RootSpeedData rootSpeedData;
 
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform aimTransform;

@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 11400000, guid: 844b2fcf2c9658943b0dba7194f371cd, type: 2}
+  rootSpeedData: {fileID: 11400000, guid: db2be2db7da939945892522d6e1bcdee, type: 2}
   bullet: {fileID: 2047430717772591056, guid: b281995ddaeab824faa7924a40488217, type: 3}
   aimTransform: {fileID: 1903649690}
 --- !u!212 &309028594
