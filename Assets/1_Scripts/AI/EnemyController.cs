@@ -9,12 +9,12 @@ public class EnemyController : MonoBehaviour
 
     protected Vector3 moveDirection;
 
-    private void Start()
+    protected virtual void Start()
     {
         moveDirection = transform.position.x > 0 ? Vector3.left : Vector3.right;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         transform.Translate(Time.deltaTime * speed * moveDirection);
     }
