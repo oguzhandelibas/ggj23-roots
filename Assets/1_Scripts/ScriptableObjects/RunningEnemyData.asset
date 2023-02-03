@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9082708ff31d001459a14ad6eaac5721, type: 3}
-  m_Name: EnemyHealth
+  m_Script: {fileID: 11500000, guid: 322ca11d6a9dd614f94ef839f7ae41cc, type: 3}
+  m_Name: RunningEnemyData
   m_EditorClassIdentifier: 
-  CharacterHealth: 50
+  Health: 70
+  Power: 10
+  Speed: 4
