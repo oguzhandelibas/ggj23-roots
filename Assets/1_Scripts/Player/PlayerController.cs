@@ -10,22 +10,25 @@ namespace Rot.Control
         [SerializeField] private Health playerHealth;
 
         [SerializeField] private GameObject bullet;
-        [SerializeField] private Transform firePoint;
+        [SerializeField] private Transform aimTransform;
 
-        public void Shoot(Vector2 origin, Vector2 direction)
+        public void Shoot(Vector3 origin, Vector3 target)
         {
-            GameObject obj = Instantiate(bullet, firePoint.position, Quaternion.Euler(0,0,90));
-            obj.GetComponent<Rigidbody2D>().AddForce(direction * 10, ForceMode2D.Impulse);
+            GameObject obj = Instantiate(bullet, origin, Quaternion.Euler(aimTransform.localEulerAngles));
+            obj.GetComponent<Rigidbody2D>().AddForce(target * 5, ForceMode2D.Impulse);
             Destroy(obj, 3);
         }
 
         private void Update()
         {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 aimDirection = (mousePos - aimTransform.position).normalized;
+            float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+            aimTransform.eulerAngles = new Vector3(0, 0, angle);
+            
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Debug.Log(pos);
-                Shoot(firePoint.position, pos); //mouse positiyon ile güncelle
+                Shoot(aimTransform.position, mousePos);
             }
         }
     }
