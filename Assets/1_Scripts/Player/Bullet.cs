@@ -11,11 +11,17 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            collision.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
+            Destroy(gameObject);
+
+            /*
+            Debug.Log("1");
             int colliderInstanceId = collision.GetInstanceID();
             if (DamageableHelper.DamagebleList.ContainsKey(colliderInstanceId))
             {
+                Debug.Log("2");
                 DamageableHelper.DamagebleList[colliderInstanceId].Damage(bulletData.Damage);
-            }
+            }*/
         }
     }
 }

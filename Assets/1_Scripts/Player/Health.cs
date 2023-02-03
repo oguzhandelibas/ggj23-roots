@@ -12,5 +12,6 @@ public class Health : ScriptableObject, IDamageable
     public void Damage(int dmg)
     {
         CharacterHealth -= dmg;
+        Debug.Log("Caným bu: " + CharacterHealth);
     }
 }
