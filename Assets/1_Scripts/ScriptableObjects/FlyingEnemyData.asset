@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322ca11d6a9dd614f94ef839f7ae41cc, type: 3}
   m_Name: FlyingEnemyData
   m_EditorClassIdentifier: 
-  Health: 120
   Power: 25
   Speed: 2.5
+  ScoreReward: 3

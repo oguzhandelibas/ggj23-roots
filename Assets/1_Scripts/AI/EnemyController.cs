@@ -27,7 +27,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        if (Health <= 0) Destroy(gameObject);
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+            ScoreManager.Instance.IncreaseScore(EnemyData.ScoreReward);
+        }
+
         Debug.Log(Health);
     }
 }

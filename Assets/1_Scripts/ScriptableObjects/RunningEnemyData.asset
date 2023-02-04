@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322ca11d6a9dd614f94ef839f7ae41cc, type: 3}
   m_Name: RunningEnemyData
   m_EditorClassIdentifier: 
-  Health: 70
   Power: 10
   Speed: 4
+  ScoreReward: 1
