@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ namespace Rot.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        private const int STARTING_HEALTH = 100;
+        private const int STARTING_BULLET_DAMAGE = 10;
+        private const float STARTING_ROOT_SPEED = 0.05f;
+
         [SerializeField] private Health playerHealth;
         [SerializeField] private BulletData bulletData;
         [SerializeField] private RootSpeedData rootSpeedData;
@@ -30,6 +35,13 @@ namespace Rot.Control
         private void Awake()
         {
             
+        }
+
+        private void Start()
+        {
+            playerHealth.CharacterHealth = STARTING_HEALTH;
+            bulletData.Damage = STARTING_BULLET_DAMAGE;
+            rootSpeedData.Speed = STARTING_ROOT_SPEED;
         }
 
         private void Update()
