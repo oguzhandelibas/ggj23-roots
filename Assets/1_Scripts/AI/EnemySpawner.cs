@@ -41,18 +41,43 @@ public class EnemySpawner : MonoBehaviour
     // Enemy spawning does not stop
     private IEnumerator SpawnEnemy(EnemyType enemyType)
     {
+        Vector3 spawnPosition;
         switch (enemyType)
         {
             case EnemyType.Walking:
-                Instantiate(walkingEnemyPrefab, GetGroundSpawnPosition(), walkingEnemyPrefab.transform.rotation);
+                spawnPosition = GetGroundSpawnPosition();
+                GameObject walkingEnemyGO = Instantiate(walkingEnemyPrefab, spawnPosition, walkingEnemyPrefab.transform.rotation);
+                if (spawnPosition.x > 0)
+                {
+                    Vector3 transformLocalScale = walkingEnemyGO.transform.localScale;
+                    transformLocalScale.x *= -1;
+                    walkingEnemyGO.transform.localScale = transformLocalScale;
+                }
+
                 yield return new WaitForSeconds(enemySpawnData.WalkingEnemySpawnRate);
                 break;
             case EnemyType.Running:
-                Instantiate(runningEnemyPrefab, GetGroundSpawnPosition(), walkingEnemyPrefab.transform.rotation);
+                spawnPosition = GetGroundSpawnPosition();
+                GameObject runningEnemyGO = Instantiate(runningEnemyPrefab, spawnPosition, walkingEnemyPrefab.transform.rotation);
+                if (spawnPosition.x > 0)
+                {
+                    Vector3 transformLocalScale = runningEnemyGO.transform.localScale;
+                    transformLocalScale.x *= -1;
+                    runningEnemyGO.transform.localScale = transformLocalScale;
+                }
+                
                 yield return new WaitForSeconds(enemySpawnData.RunningEnemySpawnRate);
                 break;
             case EnemyType.Flying:
-                Instantiate(flyingEnemyPrefab, GetAirSpawnPosition(), walkingEnemyPrefab.transform.rotation);
+                spawnPosition = GetAirSpawnPosition();
+                GameObject flyingEnemyGO = Instantiate(flyingEnemyPrefab, spawnPosition, walkingEnemyPrefab.transform.rotation);
+                if (spawnPosition.x < 0)
+                {
+                    Vector3 transformLocalScale = flyingEnemyGO.transform.localScale;
+                    transformLocalScale.x *= -1;
+                    flyingEnemyGO.transform.localScale = transformLocalScale;
+                }
+                
                 yield return new WaitForSeconds(enemySpawnData.FlyingEnemySpawnRate);
                 break;
             default:    // Spawn walking enemy in case of an error
