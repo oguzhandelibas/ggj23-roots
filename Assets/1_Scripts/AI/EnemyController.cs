@@ -18,10 +18,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     protected virtual void Update()
     {
         transform.Translate(Time.deltaTime * EnemyData.Speed * moveDirection);
-        if (Vector3.Distance(Vector3.zero, transform.position) <= 0.5f)
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void TakeDamage(int damage)
