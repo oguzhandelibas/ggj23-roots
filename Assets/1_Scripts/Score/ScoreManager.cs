@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     private const float ROOT_SPEED_INCREASE_AMOUNT = 0.05f;
     
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject upgradeInfoTextGO;
+    private TextMeshProUGUI upgradeInfoText;
     private Animator rootAnimator;
     private BulletData playerBulletData;
     private RootSpeedData playerRootSpeedData;
@@ -37,6 +40,7 @@ public class ScoreManager : MonoBehaviour
         playerBulletData = playerControllerScript.BulletPowerData;
         playerRootSpeedData = playerControllerScript.RootSpeedData;
         rootAnimator = GameObject.Find("RootController").GetComponent<Animator>();
+        upgradeInfoText = upgradeInfoTextGO.GetComponent<TextMeshProUGUI>();
         score = 0;
     }
 
@@ -47,6 +51,7 @@ public class ScoreManager : MonoBehaviour
         {
             availableUpgradeCount += score / SCORE_NEEDED_FOR_UPGRADE;
             score %= SCORE_NEEDED_FOR_UPGRADE;
+            SetUpgradeInfoText();
         }
     }
 
@@ -55,6 +60,7 @@ public class ScoreManager : MonoBehaviour
         playerBulletData.Damage += BULLET_POWER_INCREASE_AMOUNT;
         bulletLevel++;
         availableUpgradeCount--;
+        SetUpgradeInfoText();
         Debug.Log("bullet power: " + playerBulletData.Damage);
     }
 
@@ -64,6 +70,18 @@ public class ScoreManager : MonoBehaviour
         rootAnimator.speed = playerRootSpeedData.Speed;
         rootSpeedLevel++;
         availableUpgradeCount--;
+        SetUpgradeInfoText();
         Debug.Log("root speed: " + playerRootSpeedData.Speed);
+    }
+
+    private void SetUpgradeInfoText()
+    {
+        if (availableUpgradeCount > 0)
+        {
+            upgradeInfoTextGO.SetActive(true);
+            upgradeInfoText.text = availableUpgradeCount + " upgrade available! \nClick the head to upgrade lightning, \nclick the drill to upgrade root.";
+            return;
+        }
+        upgradeInfoTextGO.SetActive(false);
     }
 }

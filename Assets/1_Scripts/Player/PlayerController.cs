@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private const int STARTING_HEALTH = 100;
     private const int STARTING_BULLET_DAMAGE = 10;
-    private const float STARTING_ROOT_SPEED = 0.05f;
+    private const float STARTING_ROOT_SPEED = 0.3f;
 
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private Health playerHealth;
