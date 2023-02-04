@@ -1358,6 +1358,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5602982384ae86c41adb49fa1ae428da, type: 2}
     - target: {fileID: 8482431926112843950, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
+      propertyPath: enemySpawner
+      value: 
+      objectReference: {fileID: 787624027}
+    - target: {fileID: 8482431926112843950, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
       propertyPath: lightningEnd
       value: 
       objectReference: {fileID: 0}
