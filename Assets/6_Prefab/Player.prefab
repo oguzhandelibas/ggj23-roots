@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8482431926074205412}
   - component: {fileID: 8482431926074205411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8482431926112843948}
   - component: {fileID: 8482431926112843949}
   - component: {fileID: 8482431926112843950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8482431927674961349}
   - component: {fileID: 8482431927674961348}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

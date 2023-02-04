@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
-using Rot.Stat;
-public class EnemyController : MonoBehaviour
+
+public class EnemyController : MonoBehaviour, IDamageable
 {
     //[SerializeField] private Health enemyHealth;
-    public int health = 10;
+    private int Health = 10;
     [SerializeField] protected EnemyData EnemyData;
 
     protected Vector3 moveDirection;
@@ -26,8 +26,8 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0) Destroy(gameObject);
-        Debug.Log(health);
+        Health -= damage;
+        if (Health <= 0) Destroy(gameObject);
+        Debug.Log(Health);
     }
 }

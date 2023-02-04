@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rot.Stat;
 
 public class Bullet : MonoBehaviour
 {
@@ -13,15 +12,6 @@ public class Bullet : MonoBehaviour
         {
             collision.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
             Destroy(gameObject);
-
-            /*
-            Debug.Log("1");
-            int colliderInstanceId = collision.GetInstanceID();
-            if (DamageableHelper.DamagebleList.ContainsKey(colliderInstanceId))
-            {
-                Debug.Log("2");
-                DamageableHelper.DamagebleList[colliderInstanceId].Damage(bulletData.Damage);
-            }*/
         }
     }
 }

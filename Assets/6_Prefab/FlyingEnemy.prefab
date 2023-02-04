@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3899696679672195156}
   - component: {fileID: 3899696679672195157}
   - component: {fileID: 8916475010623180602}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808c363a4162a3468a9c45a95270815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 11400000, guid: 58fdafab1a3be0446a1485a73b9f7c9e, type: 2}
+  health: 0
   EnemyData: {fileID: 11400000, guid: 4d8f039221cb7664fb5b9573f2b4529d, type: 2}
 --- !u!60 &3899696679672195157
 PolygonCollider2D:
