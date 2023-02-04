@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
                 cameraShake.ShakeActive = true;
                 cameraShake.shakeDuration = 0.1f;
                 hit.collider.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
-                if(hit.collider.GetComponent<SpriteRenderer>() != null) 
-                    StartCoroutine(ColorRoutine(hit.collider.GetComponent<SpriteRenderer>()));
+               
+                StartCoroutine(ColorRoutine(hit.collider.GetComponent<SpriteRenderer>()));
             }
             CreateLightning(mousePos);
         }
@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ColorRoutine(SpriteRenderer spriteRenderer)
     {
-        spriteRenderer.color = Color.red;
+        if(spriteRenderer!=null)spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.15f);
-        spriteRenderer.color = Color.white;
+        if(spriteRenderer!=null)spriteRenderer.color = Color.white;
     }
 
     public void TakeDamage(int damage)
