@@ -7,7 +7,6 @@ public class WalkingEnemyController : EnemyController
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hit");
             transform.GetChild(0).gameObject.SetActive(true);
         }
     }
