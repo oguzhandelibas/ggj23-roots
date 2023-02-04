@@ -6,10 +6,10 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private const float X_RANGE_MAX = 14f;
-    private const float X_RANGE_MIN = 10f;
-    private const float Y_RANGE_MAX = 8f;
-    private const float Y_RANGE_MIN = 6f;
+    private const float X_RANGE_MAX = 21f;
+    private const float X_RANGE_MIN = 15f;
+    private const float Y_RANGE_MAX = 12f;
+    private const float Y_RANGE_MIN = 2f;
     
     [SerializeField] private EnemySpawnData enemySpawnData;
     [SerializeField] private GameObject walkingEnemyPrefab;

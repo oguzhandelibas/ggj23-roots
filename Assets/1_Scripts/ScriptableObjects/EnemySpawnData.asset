@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaf912ebf3e92349b3796c2130bbd9b, type: 3}
   m_Name: EnemySpawnData
   m_EditorClassIdentifier: 
-  WalkingEnemySpawnRate: 4
-  RunningEnemySpawnRate: 4
-  FlyingEnemySpawnRate: 4
+  WalkingEnemySpawnRate: 1
+  RunningEnemySpawnRate: 1
+  FlyingEnemySpawnRate: 1
