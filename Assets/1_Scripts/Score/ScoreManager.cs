@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour
         PlayerController playerControllerScript = player.GetComponent<PlayerController>();
         playerBulletData = playerControllerScript.BulletPowerData;
         playerRootSpeedData = playerControllerScript.RootSpeedData;
-        rootAnimator = GameObject.Find("RootGenerator").GetComponent<Animator>();
+        rootAnimator = GameObject.Find("RootController").GetComponent<Animator>();
         score = 0;
     }
 
