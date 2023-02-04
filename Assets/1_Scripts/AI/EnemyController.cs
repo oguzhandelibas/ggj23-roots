@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void Dead()
     {
-        var obj = Instantiate(deadEffect, transform.position, Quaternion.identity);
+        var obj = Instantiate(deadEffect, gameObject.transform.GetChild(0).position, Quaternion.identity);
         Destroy(obj, 1);
         Destroy(gameObject);
         ScoreManager.Instance.IncreaseScore(EnemyData.ScoreReward);
