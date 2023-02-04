@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private CameraShake cameraShake;
 
     public bool isDead;
 
@@ -37,10 +38,21 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null && hit.collider.tag == "Enemy")
             {
+                cameraShake.ShakeActive = true;
+                cameraShake.shakeDuration = 0.1f;
                 hit.collider.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
+                if(hit.collider.GetComponent<SpriteRenderer>() != null) 
+                    StartCoroutine(ColorRoutine(hit.collider.GetComponent<SpriteRenderer>()));
             }
             CreateLightning(mousePos);
         }
+    }
+
+    IEnumerator ColorRoutine(SpriteRenderer spriteRenderer)
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.15f);
+        spriteRenderer.color = Color.white;
     }
 
     public void TakeDamage(int damage)
@@ -49,12 +61,18 @@ public class PlayerController : MonoBehaviour
         isDead = playerHealth.TakeDamage(damage);
         if (isDead)
         {
+            cameraShake.ShakeActive = true;
+            cameraShake.shakeDuration = 0.35f;
             enemySpawner.gameObject.SetActive(false);
             rootController.gameObject.SetActive(false);
-            Destroy(gameObject, 1);
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            var obj = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Destroy(obj, 1);
+            Destroy(gameObject);
+            
         }
-        rootController.DowngradeRoot();
+        cameraShake.ShakeActive = true;
+        cameraShake.shakeDuration = 0.1f;
+        //rootController.DowngradeRoot();
     }
 
 

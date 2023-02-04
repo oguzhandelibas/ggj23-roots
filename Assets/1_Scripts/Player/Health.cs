@@ -10,7 +10,7 @@ public class Health : ScriptableObject, IDamageable
     public bool TakeDamage(int damage)
     {
         CharacterHealth -= damage;
-        Debug.Log(CharacterHealth);
+        Debug.Log("Player Health: " + CharacterHealth);
         if (CharacterHealth <= 0) return true;
 
         return false;
