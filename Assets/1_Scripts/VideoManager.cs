@@ -17,6 +17,6 @@ public class VideoManager : MonoBehaviour
     {
         yield return new WaitForSeconds((float)videoPlayer.length);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);
-        SceneManager.LoadScene("5_Scenes/Main/GameScene");
+        SceneManager.LoadScene("MenuScene");
     }
 }
