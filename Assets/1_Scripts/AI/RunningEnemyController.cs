@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RunningEnemyController : EnemyController
 {
+    [SerializeField] private GameObject impactEffect;
     private Animator runningEnemyAnimator;
 
     protected override void Start()
@@ -16,7 +17,12 @@ public class RunningEnemyController : EnemyController
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            col.gameObject.GetComponent<PlayerController>().TakeDamage(10);
             // TODO: Running Enemy hits the player
+            var obj = Instantiate(impactEffect, transform.position, Quaternion.identity);
+            
+            Destroy(obj, 1);
+            Destroy(gameObject);
         }
     }
 }

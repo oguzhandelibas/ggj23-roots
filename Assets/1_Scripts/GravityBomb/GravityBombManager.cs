@@ -21,7 +21,7 @@ public class GravityBombManager : MonoBehaviour
         foreach (Collider2D item in objects)
         {
             Vector2 direction = item.transform.position - transform.position;
-            item.GetComponent<Rigidbody2D>().AddForce(direction * force);
+            item.GetComponent<Rigidbody2D>().AddForce(direction * force * Vector2.up * 5);
             print(item.GetComponent<EnemyController>());
         }
 

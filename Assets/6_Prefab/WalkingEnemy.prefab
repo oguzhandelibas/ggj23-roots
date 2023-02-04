@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4107066447299963829}
   - component: {fileID: 5317777509052446695}
   - component: {fileID: 7170153785323029618}
-  - component: {fileID: 8204794697337520891}
+  - component: {fileID: 7916000290175873164}
   m_Layer: 6
   m_Name: WalkingEnemy
   m_TagString: Enemy
@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ccb9b33fc58024b8a53a64f99791fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 30
   EnemyData: {fileID: 11400000, guid: 15e1b22ae4ade7e49ad8e474a95e342b, type: 2}
+  deadEffect: {fileID: 158308, guid: 96a96c08c36361544affb3c783e0056e, type: 3}
 --- !u!50 &-4107066447299963829
 Rigidbody2D:
   serializedVersion: 4
@@ -143,8 +145,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8204794697337520891
-CircleCollider2D:
+--- !u!70 &7916000290175873164
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -156,9 +158,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.327461, y: 0.31363863}
-  serializedVersion: 2
-  m_Radius: 2.1155212
+  m_Offset: {x: -1.3002028, y: 0.591608}
+  m_Size: {x: 6.45802, y: 4.3820963}
+  m_Direction: 1
 --- !u!1001 &187785882177689771
 PrefabInstance:
   m_ObjectHideFlags: 0

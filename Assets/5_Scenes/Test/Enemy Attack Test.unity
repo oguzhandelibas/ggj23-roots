@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &40186592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3520134765217174416, guid: d2c5c98e04bf0444e9bbf9faee6aef44, type: 3}
+  m_PrefabInstance: {fileID: 549931823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13431393002de8c4c9516b09a36586f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &79530756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8482431926112843948, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
@@ -749,7 +760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3520134765217174420, guid: d2c5c98e04bf0444e9bbf9faee6aef44, type: 3}
       propertyPath: m_Name
-      value: RootGenerator
+      value: RootController
       objectReference: {fileID: 0}
     - target: {fileID: 3520134765217174422, guid: d2c5c98e04bf0444e9bbf9faee6aef44, type: 3}
       propertyPath: m_RootOrder
@@ -1023,8 +1034,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8482431926112843951, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
   m_PrefabInstance: {fileID: 940253678}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &579044167
-BoxCollider2D:
+--- !u!70 &579044170
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1036,19 +1047,27 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.18125296, y: 1.0150182}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.2, y: 10.8}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.1621914, y: 4.709889}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.17018048, y: 0.66856545}
+  m_Size: {x: 1.9238384, y: 4.768281}
+  m_Direction: 0
+--- !u!114 &579044171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579044164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5fd367ae1fc53468f181442f0e77ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldofImpact: 7
+  force: 30
+  LayerToHit:
+    serializedVersion: 2
+    m_Bits: 64
+  ExplosionEffect: {fileID: 0}
 --- !u!1 &739476193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,6 +1361,14 @@ PrefabInstance:
       propertyPath: lightningEnd
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8482431926112843950, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
+      propertyPath: rootController
+      value: 
+      objectReference: {fileID: 40186592}
+    - target: {fileID: 8482431926112843950, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 180860, guid: 89fdb9fee1f1fe94cb02018221255e50, type: 3}
     - target: {fileID: 8482431926112843950, guid: 6e33cf752d805e84790370bbb2fbbdeb, type: 3}
       propertyPath: lightningPrefab
       value: 
@@ -2392,7 +2419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6cbd091241b7b4c832378788d073cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 579044164}
 --- !u!4 &2134954894
 Transform:
   m_ObjectHideFlags: 0

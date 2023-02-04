@@ -4,8 +4,9 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, IDamageable
 {
     //[SerializeField] private Health enemyHealth;
-    private int Health = 10;
+    [SerializeField] private int Health = 10;
     [SerializeField] protected EnemyData EnemyData;
+    public GameObject deadEffect;
 
     protected Vector3 moveDirection;
 
@@ -20,10 +21,22 @@ public class EnemyController : MonoBehaviour, IDamageable
         transform.Translate(Time.deltaTime * EnemyData.Speed * moveDirection);
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
         Health -= damage;
-        if (Health <= 0) Destroy(gameObject);
-        Debug.Log(Health);
+        if (Health <= 0)
+        {
+            Dead();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Dead()
+    {
+        var obj = Instantiate(deadEffect, transform.position, Quaternion.identity);
+        Destroy(obj, 1);
+        Destroy(gameObject);
     }
 }

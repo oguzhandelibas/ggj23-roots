@@ -35,7 +35,12 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetAirSpawnPosition()
     {
-        return new Vector3(Random.Range(-X_RANGE_MAX, X_RANGE_MAX), Random.Range(Y_RANGE_MIN, Y_RANGE_MAX), 0);
+        int isOnRight = Random.Range(0, 2); // Generate 0 or 1 to determine left or right side
+        if (isOnRight == 1)
+        {
+            return new Vector3(Random.Range(X_RANGE_MIN-1, X_RANGE_MAX), Random.Range(Y_RANGE_MIN, Y_RANGE_MAX), 0);
+        }
+        return new Vector3(Random.Range(-X_RANGE_MAX, -X_RANGE_MIN+1), Random.Range(Y_RANGE_MIN, Y_RANGE_MAX), 0);
     }
 
     // Enemy spawning does not stop

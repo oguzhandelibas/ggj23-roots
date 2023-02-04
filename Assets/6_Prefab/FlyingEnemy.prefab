@@ -48,7 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808c363a4162a3468a9c45a95270815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
   EnemyData: {fileID: 11400000, guid: 4d8f039221cb7664fb5b9573f2b4529d, type: 2}
+  deadEffect: {fileID: 158308, guid: 96a96c08c36361544affb3c783e0056e, type: 3}
+  impactEffect: {fileID: 173590, guid: 7469283484e0dcc4887fa575d1fd7ecc, type: 3}
 --- !u!50 &8916475010623180602
 Rigidbody2D:
   serializedVersion: 4

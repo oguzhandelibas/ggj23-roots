@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FlyingEnemyController : EnemyController
 {
+    [SerializeField] private GameObject impactEffect;
+
     protected override void Start()
     {
         moveDirection = Vector3.zero - transform.position;
@@ -13,7 +15,11 @@ public class FlyingEnemyController : EnemyController
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            col.gameObject.GetComponent<PlayerController>().TakeDamage(10);
             // TODO: Flying Enemy hits the player
+            var obj = Instantiate(impactEffect, transform.position, Quaternion.identity);
+            Destroy(obj, 1);
+            Destroy(gameObject);
         }
     }
 }

@@ -7,8 +7,12 @@ public class Health : ScriptableObject, IDamageable
 {
     public int CharacterHealth;
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
         CharacterHealth -= damage;
+        Debug.Log(CharacterHealth);
+        if (CharacterHealth <= 0) return true;
+
+        return false;
     }
 }
