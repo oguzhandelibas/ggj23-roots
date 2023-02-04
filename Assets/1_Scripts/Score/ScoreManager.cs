@@ -4,11 +4,14 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
+    private const int SCORE_NEEDED_FOR_UPGRADE = 10;
     
     [SerializeField] private GameObject player;
     private BulletData playerBulletData;
     private RootSpeedData playerRootSpeedData;
     private int score;
+    private int availableUpgradeCount;
     
     private void Awake()
     {
@@ -32,5 +35,10 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore(int increaseAmount)
     {
         score += increaseAmount;
+        if (score >= SCORE_NEEDED_FOR_UPGRADE)
+        {
+            availableUpgradeCount += score / SCORE_NEEDED_FOR_UPGRADE;
+            score %= SCORE_NEEDED_FOR_UPGRADE;
+        }
     }
 }
