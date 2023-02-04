@@ -15,6 +15,18 @@ namespace Rot.Control
         [SerializeField] private GameObject lightningPrefab;
         [SerializeField] private LayerMask layerMask;
 
+        internal BulletData BulletPowerData
+        {
+            get => bulletData;
+            set => bulletData = value;
+        }
+
+        internal RootSpeedData RootSpeedData
+        {
+            get => rootSpeedData;
+            set => rootSpeedData = value;
+        }
+
         private void Awake()
         {
             
