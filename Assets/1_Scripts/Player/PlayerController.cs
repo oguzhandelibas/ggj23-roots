@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,8 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private GameObject hitEffect;
     [SerializeField] private CameraShake cameraShake;
     [SerializeField] private GameObject losePanel;
+
+    [SerializeField] private Image healthBar;
 
     public bool isDead;
 
@@ -41,8 +45,9 @@ public class PlayerController : MonoBehaviour
             {
                 cameraShake.ShakeActive = true;
                 cameraShake.shakeDuration = 0.1f;
-                hit.collider.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
-               
+                bool isDead = hit.collider.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
+                if (!isDead) Instantiate(hitEffect, hit.transform.position, Quaternion.identity);
+                
                 StartCoroutine(ColorRoutine(hit.collider.GetComponent<SpriteRenderer>()));
             }
             CreateLightning(mousePos);
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
         isDead = playerHealth.TakeDamage(damage);
+        healthBar.fillAmount = (float)playerHealth.CharacterHealth / 100;
         if (isDead)
         {
             losePanel.transform.parent = null;
