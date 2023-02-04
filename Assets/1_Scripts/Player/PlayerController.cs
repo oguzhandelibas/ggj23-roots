@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private const int STARTING_HEALTH = 100;
+    private const int STARTING_BULLET_DAMAGE = 10;
+    private const float STARTING_ROOT_SPEED = 0.05f;
+
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private Health playerHealth;
     [SerializeField] private BulletData bulletData;
@@ -24,12 +28,27 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Image healthBar;
 
+    internal BulletData BulletPowerData
+    {
+        get => bulletData;
+        set => bulletData = value;
+    }
+
+    internal RootSpeedData RootSpeedData
+    {
+        get => rootSpeedData;
+        set => rootSpeedData = value;
+    }
+    
     public bool isDead;
 
     private void Start()
     {
-        playerHealth.CharacterHealth = 100;
+        playerHealth.CharacterHealth = STARTING_HEALTH;
+        bulletData.Damage = STARTING_BULLET_DAMAGE;
+        rootSpeedData.Speed = STARTING_ROOT_SPEED;
     }
+    
     private void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);/*
