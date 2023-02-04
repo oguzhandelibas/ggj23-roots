@@ -10,7 +10,12 @@ public class EnemySpawner : MonoBehaviour
     private const float X_RANGE_MIN = 15f;
     private const float Y_RANGE_MAX = 12f;
     private const float Y_RANGE_MIN = 2f;
-    
+
+    private const float STARTING_FLYING_SPAWN_RATE = 3f;
+    private const float STARTING_WALKING_SPAWN_RATE = 3f;
+    private const float STARTING_RUNNING_SPAWN_RATE = 3f;
+    private const float STARTING_SPAWN_RATE_MULTIPLIER = 0.75f;
+
     [SerializeField] private EnemySpawnData enemySpawnData;
     [SerializeField] private GameObject walkingEnemyPrefab;
     [SerializeField] private GameObject runningEnemyPrefab;
@@ -18,9 +23,15 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        enemySpawnData.FlyingEnemySpawnRate = STARTING_FLYING_SPAWN_RATE;
+        enemySpawnData.WalkingEnemySpawnRate = STARTING_WALKING_SPAWN_RATE;
+        enemySpawnData.RunningEnemySpawnRate = STARTING_RUNNING_SPAWN_RATE;
+        enemySpawnData.SpawnRateMultiplier = STARTING_SPAWN_RATE_MULTIPLIER;
+        
         StartCoroutine(SpawnEnemy(EnemyType.Walking));
         StartCoroutine(SpawnEnemy(EnemyType.Running));
         StartCoroutine(SpawnEnemy(EnemyType.Flying));
+        StartCoroutine(ChangeSpawnRate());
     }
 
     private Vector3 GetGroundSpawnPosition()
@@ -92,5 +103,16 @@ public class EnemySpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnEnemy(enemyType));
+    }
+
+    private IEnumerator ChangeSpawnRate()
+    {
+        yield return new WaitForSeconds(enemySpawnData.SpawnRateMultiplyRate);
+        
+        enemySpawnData.FlyingEnemySpawnRate *= enemySpawnData.SpawnRateMultiplier;
+        enemySpawnData.WalkingEnemySpawnRate *= enemySpawnData.SpawnRateMultiplier;
+        enemySpawnData.RunningEnemySpawnRate *= enemySpawnData.SpawnRateMultiplier;
+
+        StartCoroutine(ChangeSpawnRate());
     }
 }
