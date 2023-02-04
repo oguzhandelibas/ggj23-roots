@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private CameraShake cameraShake;
+    [SerializeField] private GameObject losePanel;
 
     public bool isDead;
 
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
         isDead = playerHealth.TakeDamage(damage);
         if (isDead)
         {
+            losePanel.transform.parent = null;
+            losePanel.SetActive(true);
             cameraShake.ShakeActive = true;
             cameraShake.shakeDuration = 0.35f;
             enemySpawner.gameObject.SetActive(false);
