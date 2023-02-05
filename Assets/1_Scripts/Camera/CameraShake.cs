@@ -36,14 +36,14 @@ public class CameraShake : MonoBehaviour
 		if (!ShakeActive) return;
 		if (shakeDuration > 0)
 		{
-			camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+			camTransform.localPosition = new Vector3(originalPos.x, camTransform.localPosition.y, originalPos.z) + Random.insideUnitSphere * shakeAmount;
 
 			shakeDuration -= Time.deltaTime * decreaseFactor;
 		}
 		else
 		{
 			shakeDuration = 0f;
-			camTransform.localPosition = originalPos;
+			camTransform.localPosition = new Vector3(originalPos.x, camTransform.localPosition.y, originalPos.z);
 			ShakeActive = false;
 		}
 	}
