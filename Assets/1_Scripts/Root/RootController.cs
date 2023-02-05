@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class RootController : MonoBehaviour
 {
+    [SerializeField] private Color mainColor, targetColor;
     [SerializeField] private RootSpeedData rootSpeedData;
     [SerializeField] private Animator rootAnimatior;
-    
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    bool levelEnd;
     private void Start()
     {
+        
         rootAnimatior.speed = rootSpeedData.Speed;
+        levelEnd = false;
+        spriteRenderer.color = mainColor;
     }
 
-    public void DowngradeRoot()
+    private void Update()
     {
-        StartCoroutine(DowngradeRootRoutine());
+        if(levelEnd) spriteRenderer.color = Color.Lerp(mainColor, targetColor, Mathf.PingPong(Time.time, 1));
     }
 
-    IEnumerator DowngradeRootRoutine()
+    public void RootColorChange()
     {
-        rootAnimatior.speed = -rootSpeedData.Speed*2;
-        yield return new WaitForSeconds(0.75f);
-        rootAnimatior.speed = rootSpeedData.Speed;
+        levelEnd = true;
     }
 }

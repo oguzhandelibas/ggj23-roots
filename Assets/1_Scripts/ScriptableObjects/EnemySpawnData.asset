@@ -15,3 +15,5 @@ MonoBehaviour:
   WalkingEnemySpawnRate: 3
   RunningEnemySpawnRate: 3
   FlyingEnemySpawnRate: 3
+  SpawnRateMultiplier: 0.75
+  SpawnRateMultiplyRate: 30

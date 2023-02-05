@@ -43,7 +43,7 @@ public class CameraShake : MonoBehaviour
 		else
 		{
 			shakeDuration = 0f;
-			camTransform.localPosition = new Vector3(originalPos.x, camTransform.localPosition.y, originalPos.z);
+			camTransform.localPosition = originalPos;
 			ShakeActive = false;
 		}
 	}
