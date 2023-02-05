@@ -7,7 +7,7 @@ public class LosePanel : MonoBehaviour
 {
     public void _TryAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(2);
     }
 
     public void _TurnBackMenu()

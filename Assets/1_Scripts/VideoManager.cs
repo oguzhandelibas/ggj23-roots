@@ -7,9 +7,11 @@ public class VideoManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
 
+
     private void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();
+
         StartCoroutine(WaitForVideoToEnd());
     }
 
