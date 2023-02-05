@@ -9,6 +9,17 @@ public class PlayerController : MonoBehaviour
     private const int STARTING_BULLET_DAMAGE = 10;
     private const float STARTING_ROOT_SPEED = 0.3f;
 
+    private List<Color> colorList = new List<Color>()
+    {
+        Color.white,
+        new Color(0.474f, 0.078f, 0.988f, 1f),  // purple
+        new Color(0.988f, 0.078f, 0.823f, 1f),  // pink
+        new Color(0.85f, 0.078f, 0.078f, 1f),  // red
+        new Color(0.784f, 0.325f, 0f, 1f),  // orange
+        Color.yellow,
+        new Color(0.388f, 1f, 0.211f, 1f)   // green
+    };
+
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private Health playerHealth;
     [SerializeField] private BulletData bulletData;
@@ -102,8 +113,7 @@ public class PlayerController : MonoBehaviour
         cameraShake.shakeDuration = 0.1f;
         //rootController.DowngradeRoot();
     }
-
-
+    
     public void CreateLightning(Vector3 targetPos)
     {
         var obj = Instantiate(lightningPrefab, transform.position, Quaternion.identity);
@@ -112,6 +122,16 @@ public class PlayerController : MonoBehaviour
         obj.transform.GetChild(1).position = targetPos;
         obj.transform.position = new Vector3(0, 0, 1);
         Destroy(obj, 0.25f);
+    }
+
+    public void ChangeLightningColor(int bulletLevel)
+    {
+        LineRenderer lineRenderer = lightningPrefab.GetComponent<LineRenderer>();
+        if (bulletLevel <= 7)
+        {
+            lineRenderer.startColor = colorList[bulletLevel - 1];
+            lineRenderer.endColor = colorList[bulletLevel - 1];
+        }
     }
 }
 
