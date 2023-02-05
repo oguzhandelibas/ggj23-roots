@@ -9,4 +9,9 @@ public class LosePanel : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void _TurnBackMenu()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
