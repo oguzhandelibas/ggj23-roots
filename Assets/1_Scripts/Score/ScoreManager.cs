@@ -39,6 +39,7 @@ public class ScoreManager : MonoBehaviour
         PlayerController playerControllerScript = player.GetComponent<PlayerController>();
         playerBulletData = playerControllerScript.BulletPowerData;
         playerRootSpeedData = playerControllerScript.RootSpeedData;
+        playerControllerScript.ChangeLightningColor(1);
         rootAnimator = GameObject.Find("RootController").GetComponent<Animator>();
         upgradeInfoText = upgradeInfoTextGO.GetComponent<TextMeshProUGUI>();
         score = 0;
@@ -61,6 +62,7 @@ public class ScoreManager : MonoBehaviour
         bulletLevel++;
         availableUpgradeCount--;
         SetUpgradeInfoText();
+        player.GetComponent<PlayerController>().ChangeLightningColor(bulletLevel);
         Debug.Log("bullet power: " + playerBulletData.Damage);
     }
 
