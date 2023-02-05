@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 15
-  maxY: 0.3
+  maxY: 0
   minY: -5.9
 --- !u!114 &1520716048
 MonoBehaviour:

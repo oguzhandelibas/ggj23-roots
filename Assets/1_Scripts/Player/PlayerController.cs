@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null && hit.collider.tag == "Enemy")
             {
                 cameraShake.ShakeActive = true;
-                cameraShake.shakeDuration = 0.1f;
+                cameraShake.shakeDuration = 0.05f;
                 bool isDead = hit.collider.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
                 if (!isDead) Instantiate(hitEffect, hit.transform.position, Quaternion.identity);
                 
