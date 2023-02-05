@@ -19,7 +19,7 @@ public class RunningEnemyController : EnemyController
         {
             col.gameObject.GetComponent<PlayerController>().TakeDamage(10);
             // TODO: Running Enemy hits the player
-            var obj = Instantiate(impactEffect, transform.position, Quaternion.identity);
+            var obj = Instantiate(impactEffect, gameObject.transform.GetChild(0).position, Quaternion.identity);
             
             Destroy(obj, 1);
             Destroy(gameObject);
