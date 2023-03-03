@@ -34,7 +34,6 @@ public class SwipeMenu : MonoBehaviour
 
     private void SetScale(int index)
     {
-        print(index);
         foreach (var item in planetList)
         {
             item.localScale = normalScale;
