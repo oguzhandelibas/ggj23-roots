@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake : Singleton<CameraShake>
 {
 	public bool ShakeActive;
 	// Transform of the camera to shake. Grabs the gameObject's transform

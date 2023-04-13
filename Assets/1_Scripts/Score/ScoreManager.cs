@@ -52,7 +52,8 @@ public class ScoreManager : MonoBehaviour
         {
             availableUpgradeCount += score / SCORE_NEEDED_FOR_UPGRADE;
             score %= SCORE_NEEDED_FOR_UPGRADE;
-            SetUpgradeInfoText();
+            UpgradeBulletPower();
+            //SetUpgradeInfoText();
         }
     }
 

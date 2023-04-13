@@ -1,11 +1,17 @@
 using System;
 using System.Collections;
-using _1_Scripts.Enums;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public enum EnemyTypes
+    {
+        Walking,
+        Running,
+        Flying
+    }
+
     private const float X_RANGE_MAX = 21f;
     private const float X_RANGE_MIN = 15f;
     private const float Y_RANGE_MAX = 12f;
@@ -16,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     private const float STARTING_RUNNING_SPAWN_RATE = 3f;
     private const float STARTING_SPAWN_RATE_MULTIPLIER = 0.75f;
 
-    [SerializeField] private EnemySpawnData enemySpawnData;
+    [SerializeField] public EnemySpawnData enemySpawnData;
     [SerializeField] private GameObject walkingEnemyPrefab;
     [SerializeField] private GameObject runningEnemyPrefab;
     [SerializeField] private GameObject flyingEnemyPrefab;
@@ -28,9 +34,9 @@ public class EnemySpawner : MonoBehaviour
         enemySpawnData.RunningEnemySpawnRate = STARTING_RUNNING_SPAWN_RATE;
         enemySpawnData.SpawnRateMultiplier = STARTING_SPAWN_RATE_MULTIPLIER;
         
-        StartCoroutine(SpawnEnemy(EnemyType.Walking));
-        StartCoroutine(SpawnEnemy(EnemyType.Running));
-        StartCoroutine(SpawnEnemy(EnemyType.Flying));
+        StartCoroutine(SpawnEnemy(EnemyTypes.Walking));
+        StartCoroutine(SpawnEnemy(EnemyTypes.Running));
+        StartCoroutine(SpawnEnemy(EnemyTypes.Flying));
         StartCoroutine(ChangeSpawnRate());
     }
 
@@ -55,12 +61,13 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Enemy spawning does not stop
-    private IEnumerator SpawnEnemy(EnemyType enemyType)
+    private IEnumerator SpawnEnemy(EnemyTypes enemyType)
     {
         Vector3 spawnPosition;
+        Collider enemyCollider = null;
         switch (enemyType)
         {
-            case EnemyType.Walking:
+            case EnemyTypes.Walking:
                 spawnPosition = GetGroundSpawnPosition();
                 GameObject walkingEnemyGO = Instantiate(walkingEnemyPrefab, spawnPosition, walkingEnemyPrefab.transform.rotation);
                 if (spawnPosition.x > 0)
@@ -69,10 +76,10 @@ public class EnemySpawner : MonoBehaviour
                     transformLocalScale.x *= -1;
                     walkingEnemyGO.transform.localScale = transformLocalScale;
                 }
-
+                EnemyManager.Instance.AddEnemy(walkingEnemyGO.GetComponent<Enemy>());
                 yield return new WaitForSeconds(enemySpawnData.WalkingEnemySpawnRate);
                 break;
-            case EnemyType.Running:
+            case EnemyTypes.Running:
                 spawnPosition = GetGroundSpawnPosition();
                 GameObject runningEnemyGO = Instantiate(runningEnemyPrefab, spawnPosition, walkingEnemyPrefab.transform.rotation);
                 if (spawnPosition.x > 0)
@@ -81,10 +88,10 @@ public class EnemySpawner : MonoBehaviour
                     transformLocalScale.x *= -1;
                     runningEnemyGO.transform.localScale = transformLocalScale;
                 }
-                
+                EnemyManager.Instance.AddEnemy(runningEnemyGO.GetComponent<Enemy>());
                 yield return new WaitForSeconds(enemySpawnData.RunningEnemySpawnRate);
                 break;
-            case EnemyType.Flying:
+            case EnemyTypes.Flying:
                 spawnPosition = GetAirSpawnPosition();
                 GameObject flyingEnemyGO = Instantiate(flyingEnemyPrefab, spawnPosition, walkingEnemyPrefab.transform.rotation);
                 if (spawnPosition.x < 0)
@@ -93,7 +100,7 @@ public class EnemySpawner : MonoBehaviour
                     transformLocalScale.x *= -1;
                     flyingEnemyGO.transform.localScale = transformLocalScale;
                 }
-                
+                EnemyManager.Instance.AddEnemy(flyingEnemyGO.GetComponent<Enemy>());
                 yield return new WaitForSeconds(enemySpawnData.FlyingEnemySpawnRate);
                 break;
             default:    // Spawn walking enemy in case of an error
@@ -101,14 +108,13 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(enemySpawnData.WalkingEnemySpawnRate);
                 break;
         }
-
+        
         StartCoroutine(SpawnEnemy(enemyType));
     }
 
     private IEnumerator ChangeSpawnRate()
     {
-        yield return new WaitForSeconds(enemySpawnData.SpawnRateMultiplyRate);
-        
+        yield return new WaitForSeconds(enemySpawnData.WaitToSpawn);
         enemySpawnData.FlyingEnemySpawnRate *= enemySpawnData.SpawnRateMultiplier;
         enemySpawnData.WalkingEnemySpawnRate *= enemySpawnData.SpawnRateMultiplier;
         enemySpawnData.RunningEnemySpawnRate *= enemySpawnData.SpawnRateMultiplier;

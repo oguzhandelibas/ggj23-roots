@@ -4,16 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SwipeMenu : MonoBehaviour
+public class PlanetManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] planetList;
+    [SerializeField] private Planet[] planetList;
     [SerializeField] private Vector2 normalScale, wantedScale;
 
     private int currentIndex = 0;
-
-    private void Awake()
-    {
-    }
 
     private void Start()
     {
@@ -21,12 +17,12 @@ public class SwipeMenu : MonoBehaviour
         SetScale(currentIndex);
     }
 
-    public void NextPlanet(int value)
+    public void _NextPlanet(int value)
     {
-        if (currentIndex + value > planetList.Length-1)
+        if (currentIndex + value > planetList.Length - 1)
             currentIndex = 0;
         else if (currentIndex + value < 0)
-            currentIndex = planetList.Length-1;
+            currentIndex = planetList.Length - 1;
         else
             currentIndex += value;
         SetScale(currentIndex);
@@ -36,12 +32,12 @@ public class SwipeMenu : MonoBehaviour
     {
         foreach (var item in planetList)
         {
-            item.localScale = normalScale;
-            SetColor(item, 0.2f);
+            item.transform.localScale = normalScale;
+            SetColor(item.transform, 0.2f);
         }
         transform.localPosition = -new Vector2(696 * currentIndex, 0);
-        planetList[index].localScale = wantedScale;
-        SetColor(planetList[index], 1.0f);
+        planetList[index].transform.localScale = wantedScale;
+        SetColor(planetList[index].transform, 1.0f);
     }
 
     private void SetColor(Transform planetTransform, float alfa)
@@ -49,4 +45,10 @@ public class SwipeMenu : MonoBehaviour
         Image planetImage = planetTransform.GetComponent<Image>();
         planetImage.color = new Color(planetImage.color.r, planetImage.color.g, planetImage.color.b, alfa);
     }
+
+    public PlanetData CurrentPlanetData()
+    {
+        return planetList[currentIndex].CurrentPlanetData();
+    }
+
 }

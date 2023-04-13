@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class FlyingEnemyController : EnemyController
+public class FlyingEnemyController : Enemy
 {
     [SerializeField] private GameObject impactEffect;
 

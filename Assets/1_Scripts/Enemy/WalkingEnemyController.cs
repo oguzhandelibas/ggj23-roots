@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class WalkingEnemyController : EnemyController
+public class WalkingEnemyController : Enemy
 {
     private void OnCollisionEnter2D(Collision2D col)
     {

@@ -22,7 +22,7 @@ public class GravityBombManager : MonoBehaviour
         {
             Vector2 direction = item.transform.position - transform.position;
             item.GetComponent<Rigidbody2D>().AddForce(direction * force * Vector2.up * 5);
-            print(item.GetComponent<EnemyController>());
+            print(item.GetComponent<Enemy>());
         }
 
         //GameObject ExplosionEffectIns = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);

@@ -20,9 +20,10 @@ public class PlayerController : MonoBehaviour
         new Color(0.388f, 1f, 0.211f, 1f)   // green
     };
 
+    [SerializeField] private DamageArea damageArea;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private Health playerHealth;
-    [SerializeField] private BulletData bulletData;
+    public BulletData bulletData;
 
     [SerializeField] private RootController rootController;
     [SerializeField] private RootSpeedData rootSpeedData;
@@ -33,8 +34,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
 
     [SerializeField] private GameObject explosionEffect;
-    [SerializeField] private GameObject hitEffect;
-    [SerializeField] private CameraShake cameraShake;
     [SerializeField] private GameObject losePanel;
 
     [SerializeField] private Image healthBar;
@@ -62,34 +61,40 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);/*
+        /*
             Vector3 aimDirection = (mousePos - aimTransform.position).normalized;
             float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
             aimTransform.eulerAngles = new Vector3(0, 0, angle);*/
 
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            CheckEnemy();
+        }
 
-            if (hit.collider != null && hit.collider.tag == "Enemy")
-            {
-                cameraShake.ShakeActive = true;
-                cameraShake.shakeDuration = 0.02f;
-                bool isDead = hit.collider.GetComponent<EnemyController>().TakeDamage(bulletData.Damage);
-                if (!isDead) Instantiate(hitEffect, hit.transform.position, Quaternion.identity);
-                
-                StartCoroutine(ColorRoutine(hit.collider.GetComponent<SpriteRenderer>()));
-            }
-            CreateLightning(mousePos);
+        if (Input.GetMouseButtonUp(0))
+        {
+            damageArea.SetArea(false, Vector3.zero);
         }
     }
 
-    IEnumerator ColorRoutine(SpriteRenderer spriteRenderer)
+    private void CheckEnemy()
     {
-        if(spriteRenderer!=null)spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.15f);
-        if(spriteRenderer!=null)spriteRenderer.color = Color.white;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        damageArea.SetArea(true, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+        if (hit.collider != null && hit.collider.tag == "Enemy")
+        {
+            
+        }
+        CreateLightning(mousePos);
+
+        
     }
+
+    
 
     public void TakeDamage(int damage)
     {
@@ -100,8 +105,8 @@ public class PlayerController : MonoBehaviour
         {
             losePanel.transform.parent = null;
             losePanel.SetActive(true);
-            cameraShake.ShakeActive = true;
-            cameraShake.shakeDuration = 0.35f;
+            CameraShake.Instance.ShakeActive = true;
+            CameraShake.Instance.shakeDuration = 0.35f;
             enemySpawner.gameObject.SetActive(false);
             rootController.gameObject.SetActive(false);
             var obj = Instantiate(explosionEffect, transform.position, Quaternion.identity);
@@ -109,8 +114,8 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             
         }
-        cameraShake.ShakeActive = true;
-        cameraShake.shakeDuration = 0.1f;
+        CameraShake.Instance.ShakeActive = true;
+        CameraShake.Instance.shakeDuration = 0.1f;
         //rootController.DowngradeRoot();
     }
     

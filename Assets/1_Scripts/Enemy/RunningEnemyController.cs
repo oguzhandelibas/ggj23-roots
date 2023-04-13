@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class RunningEnemyController : EnemyController
+public class RunningEnemyController : Enemy
 {
     [SerializeField] private GameObject impactEffect;
     private Animator runningEnemyAnimator;
